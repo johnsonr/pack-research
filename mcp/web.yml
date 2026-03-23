@@ -1,0 +1,16 @@
+- name: fetch
+  description: "Fetch and extract content from URLs"
+  command: docker
+  args: ["run", "-i", "--rm", "mcp/fetch:latest"]
+
+- name: brave-search
+  description: "Web search via Brave Search API"
+  command: docker
+  args: ["run", "-i", "--rm", "-e", "BRAVE_API_KEY", "mcp/brave-search"]
+  env:
+    BRAVE_API_KEY: ${BRAVE_API_KEY}
+
+- name: wikipedia
+  description: "Wikipedia search and content"
+  command: sh
+  args: [ "-c", "docker run -i --rm mcp/wikipedia-mcp | grep --line-buffered '^{'" ]
