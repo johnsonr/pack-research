@@ -1,0 +1,9 @@
+name: research
+description: "Research pack — web search, arXiv, document management for research workflows"
+version: "0.1.0"
+author: "Embabel"
+url: "https://github.com/johnsonr/pack-research"
+tags:
+  - research
+  - search
+  - documents

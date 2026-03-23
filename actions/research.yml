@@ -1,0 +1,40 @@
+stepType: action
+name: research
+description: "Research a topic using web search and available sources. Gather comprehensive findings with source links."
+inputTypeNames:
+  - ResearchRequest
+outputTypeName: ResearchResult
+canRerun: false
+prompt: |
+  Research the following topic: {{researchRequest.topic}}
+
+  PRIORITIES — focus your effort in this order:
+  1. The specific research request above — this is the primary objective
+  2. Recent developments and new information since any existing coverage
+  3. Filling gaps in existing knowledge
+
+  BEFORE SEARCHING: Use the documents tools (read-only — do NOT update documents) to check
+  if a living document already exists on this topic.
+  If one exists:
+  1. Use document_status to get its last-modified date
+  2. Read it to understand what's already covered
+  3. Focus your searches on developments AFTER that date and on gaps in the existing coverage
+  4. Don't re-research what's already well-documented
+
+  Use the search tools to find relevant, recent information.
+  Compile your findings into a clear, well-structured markdown summary.
+  Include all source URLs you referenced.
+  If an existing document was found, clearly separate:
+  - NEW findings (after the document's last-modified date)
+  - GAP fills (topics missing from the existing document)
+  This helps the downstream document update merge your findings efficiently.
+  
+  Use the progress tool to note important sources and findings as you go.
+
+tools:
+  - brave_search
+  - fetch
+  - arxiv
+  - documents
+  - progress
+  - wikipedia

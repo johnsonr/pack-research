@@ -1,0 +1,24 @@
+stepType: action
+name: update-document-from-research
+description: "Update a living document with research findings. Picks the best matching document or creates a new one."
+inputTypeNames:
+  - ResearchResult
+outputTypeName: ResearchCompleted
+canRerun: false
+prompt: |
+  You have research results on "{{researchResult.topic}}":
+
+  {{researchResult.content}}
+
+  Sources:
+  {{researchResult.sources}}
+
+  Use the documents tools to:
+  1. List existing documents
+  2. Read any document that might be relevant to this topic
+  3. Either update the best matching document by merging the new findings, or create a new document named after the topic
+  4. Always include a "Sources" section at the end with the source URLs
+
+  After updating, return the topic, the document name you updated or created, and a brief summary of what you did.
+tools:
+  - documents

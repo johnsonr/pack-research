@@ -1,0 +1,15 @@
+stepType: action
+name: research-completed
+description: "Notify the user that research is complete and a document has been updated"
+inputTypeNames:
+  - ResearchCompleted
+outputTypeName: com.embabel.agent.spec.model.BackgroundMessage
+canRerun: false
+prompt: |
+  Research on "{{researchCompleted.topic}}" is complete.
+  Document "{{researchCompleted.documentName}}" has been updated.
+  Summary: {{researchCompleted.summary}}
+
+  Write a brief, friendly message informing the user that research is done,
+  what document was updated, and a one-line summary of the key findings.
+  Mention that the document is available in the Documents tab in the sidebar, or in the workspace documents/ directory.
