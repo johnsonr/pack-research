@@ -14,3 +14,8 @@
   description: "Wikipedia search and content"
   command: sh
   args: [ "-c", "docker run -i --rm mcp/wikipedia-mcp | grep --line-buffered '^{'" ]
+
+- name: puppeteer
+  description: "Browser automation — navigate pages, take screenshots, click elements, fill forms"
+  command: docker
+  args: ["run", "-i", "--rm", "--network=host", "mcp/puppeteer"]
