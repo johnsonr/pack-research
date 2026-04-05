@@ -1,4 +1,4 @@
 - name: arxiv
-  description: "Search and read arXiv research papers"
+  description: "Search and read arXiv research papers. Use this when the user asks about academic papers, scientific research, or wants to find papers on arXiv."
   command: docker
   args: ["run", "-i", "--rm", "mcp/arxiv-mcp-server:latest"]

@@ -1,21 +1,21 @@
 - name: fetch
-  description: "Fetch and extract content from URLs"
+  description: "Fetch and extract content from a specific URL. Use this when the user provides a URL to read, or when you need to retrieve the content of a web page."
   command: docker
   args: ["run", "-i", "--rm", "mcp/fetch:latest"]
 
 - name: brave-search
-  description: "Web search via Brave Search API"
+  description: "Search the web using Brave Search. Use this when the user asks to search online, find current information, look up facts, news, or anything that requires a web search. This is the primary web search tool."
   command: docker
   args: ["run", "-i", "--rm", "-e", "BRAVE_API_KEY", "mcp/brave-search"]
   env:
     BRAVE_API_KEY: ${BRAVE_API_KEY}
 
 - name: wikipedia
-  description: "Wikipedia search and content"
+  description: "Search and read Wikipedia articles. Use this when the user asks about Wikipedia specifically, wants encyclopedic or reference information, or asks 'what does Wikipedia say about X'."
   command: sh
   args: [ "-c", "docker run -i --rm mcp/wikipedia-mcp | grep --line-buffered '^{'" ]
 
 - name: puppeteer
-  description: "Browser automation — navigate pages, take screenshots, click elements, fill forms"
+  description: "Browser automation — navigate pages, take screenshots, click elements, fill forms. Use for testing web apps or interacting with web pages programmatically."
   command: docker
   args: ["run", "-i", "--rm", "--network=host", "mcp/puppeteer"]
