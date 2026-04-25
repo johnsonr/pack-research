@@ -1,0 +1,35 @@
+stepType: action
+name: research-daily
+description: "Schedule a topic for daily research updates. Creates a cron job that runs the 'research' action every day at 7am with the given topic, then confirms to the user. Pairs with the 'research' action and the 'documents' tool to keep a living document up to date with new findings each day."
+inputTypeNames:
+  - com.embabel.agent.domain.io.UserInput
+outputTypeName: com.embabel.agent.spec.model.BackgroundMessage
+canRerun: false
+prompt: |
+  The user wants to schedule daily research on the following topic:
+
+  "{{userInput.content}}"
+
+  Do EXACTLY these two things, in order. Do NOT run the research now —
+  your job is only to schedule it.
+
+  STEP 1 — Create a cron trigger by calling create_trigger with these arguments:
+    - type: "cron"
+    - name: A kebab-case slug derived from the topic, prefixed with `research-daily-`.
+            Example: topic "quantum computing" → name "research-daily-quantum-computing".
+            Strip stop words, lowercase everything, replace spaces with hyphens, max 50 chars.
+    - cron: "0 0 7 * * *"   (every day at 07:00 — six-field Spring cron)
+    - description: "Daily research on <the topic>"
+    - action_name: "research"
+    - payload: a JSON object with a single key `topic` whose value is the topic
+               EXACTLY as the user gave it (preserve original casing and wording).
+               Example: {"topic": "quantum computing"}
+
+  STEP 2 — Send a single short confirmation to the user containing:
+    - The topic that will be researched
+    - When it will run ("every day at 07:00")
+    - The cron job's name (so they can delete it later if they want)
+
+  Do not call any other tools. Do not run the research now.
+tools:
+  - automation

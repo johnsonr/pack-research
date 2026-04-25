@@ -1,0 +1,3 @@
+command: research-daily
+actionName: research-daily
+description: "Schedule a topic for daily research updates (creates a 7am cron job that calls research)"
