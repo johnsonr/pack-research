@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-04T15:36:40.489Z",
+  "entries": [
+    {
+      "namespace": "institutions",
+      "name": "matchInstitutions",
+      "description": "Resolve institution names to registry identities, one call per name.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "names"
+        ]
+      },
+      "outputSchema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "rorId": {
+              "type": "string"
+            },
+            "officialName": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "score": {
+              "type": "number"
+            },
+            "chosen": {
+              "type": "boolean"
+            },
+            "parent": {
+              "type": "string"
+            },
+            "parentRorId": {
+              "type": "string"
+            },
+            "kinds": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "established": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "name",
+            "chosen",
+            "kinds"
+          ]
+        }
+      }
+    }
+  ]
+}
